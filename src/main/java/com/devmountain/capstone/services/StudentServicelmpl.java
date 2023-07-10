@@ -50,6 +50,21 @@ public class StudentServicelmpl implements StudentService {
 
     }
 
+    //assigning course to student
+
+    @Override
+    public void assignCoursesToStudent(Long studentId, List<Long> courseIds) {
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        if(studentOptional.isPresent()) {
+            Student student = studentOptional.get();
+            List<Courses> coursesToAdd = coursesRepository.findAllById(courseIds);
+            student.setCoursesList(coursesToAdd);
+            studentRepository.save(student);
+        } else {
+            throw new IllegalArgumentException("Student with ID: " + studentId + " not found.");
+        }
+    }
+
     // deleting a student record
     @Override
     @Transactional
