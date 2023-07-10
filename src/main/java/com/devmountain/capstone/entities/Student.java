@@ -2,6 +2,7 @@ package com.devmountain.capstone.entities;
 
 
 
+import com.devmountain.capstone.dtos.CoursesDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -72,5 +73,6 @@ public class Student {
         this.studentEmail = studentEmail;
         this.coursesList = coursesList;
     }
+
 
 }
