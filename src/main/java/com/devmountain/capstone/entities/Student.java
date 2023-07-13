@@ -3,6 +3,7 @@ package com.devmountain.capstone.entities;
 
 
 import com.devmountain.capstone.dtos.CoursesDto;
+import com.devmountain.capstone.dtos.StudentDtos;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -65,6 +66,7 @@ public class Student {
     }
 
     public Student() {
+
     }
 
     public Student(Long studentId, String studentName, String studentEmail, List<Courses> coursesList) {

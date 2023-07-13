@@ -26,10 +26,11 @@ public class UserServicelmpl implements UserService {
     @Override
     @Transactional
     public List<String> addUser(UserDtos userDtos) {
+        System.out.println(userDtos);
         List<String> response = new ArrayList<>();
         User user = new User(userDtos);
         userRepository.saveAndFlush(user);
-        response.add("User Added Successfully");
+        response.add("http://localhost:8080/login.html");
         return response;
     }
 

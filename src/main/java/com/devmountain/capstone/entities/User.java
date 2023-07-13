@@ -22,8 +22,14 @@ private String username;
 private String password;
 
 
-//constructor created using in userservicelmpl.java
+
     public User(UserDtos userDtos) {
+        if (userDtos.getUsername() != null) {
+            this.username = userDtos.getUsername();
+        }
+        if (userDtos.getPassword() != null) {
+            this.password = userDtos.getPassword();
+        }
     }
 
 // getters and setters

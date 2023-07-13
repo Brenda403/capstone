@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -23,10 +23,12 @@ public class UserController {
 
     @PostMapping("/register")
     public List<String> addUser(@RequestBody UserDtos userDtos) {
+
         String passHash = passwordEncoder.encode(userDtos.getPassword());
         userDtos.setPassword(passHash);
         return userService.addUser(userDtos);
     }
+
 
     @PostMapping("/login")
     public List<String> userLogin(@RequestBody UserDtos userDtos) {
