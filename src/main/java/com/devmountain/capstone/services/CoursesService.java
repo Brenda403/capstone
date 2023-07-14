@@ -4,12 +4,18 @@ import com.devmountain.capstone.dtos.CoursesDto;
 import com.devmountain.capstone.entities.Courses;
 import jakarta.transaction.Transactional;
 
+import java.util.List;
+
 public interface CoursesService {
-    @Transactional
-    Courses addCourse(CoursesDto coursesDto);
+//    @Transactional
+//    CoursesDto addCourse(CoursesDto coursesDto);
 
     // deleting a course
+    @Transactional
     void deleteCourseById(Long courseId);
-
+    @Transactional
     void editByCourseId(CoursesDto coursesDto);
+
+    @Transactional
+   List<CoursesDto> getAllCourses ();
 }

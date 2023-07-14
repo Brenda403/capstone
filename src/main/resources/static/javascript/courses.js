@@ -5,7 +5,7 @@
 const submitForm = document.getElementById("course-form")
 const tableHeading = document.getElementById("courses-table-heading")
 const courseContainer = document.getElementById("courses-container")
-const submitButtion = document.getElementById("submit-button")
+const submitButton = document.getElementById("submit-button")
 
 //Modal Elements
 
@@ -15,7 +15,7 @@ const headers = {
     'Content-Type':'application/json'
 }
 
-const baseUrl = 'http://localhost:8080/api/v1/courses/'
+const baseUrl = 'http://localhost:8080/api/v1/courses'
 
 // form submission & creating rows for course information
 
@@ -23,24 +23,25 @@ const handleSubmit = async (e) => {
     e.preventDefault()
 
     let bodyObj = {
-        name: document.getElementById("course-name-input").value,
-        description: document.getElementById("course-description-input").value,
-        credits: document.getElementById("course-credits-input").value
+        courseName: document.getElementById("course-name-input").value,
+        courseDescription: document.getElementById("course-description-input").value,
+        courseCredits: document.getElementById("course-credits-input").value
         }
 
         const response = await addCourse(bodyObj);
+
         document.getElementById("course-name-input").value = ""
         document.getElementById("course-description-input").value = ""
         document.getElementById("course-credits-input").value = ""
 
         if(response) {
-            const {id, name, description, credits} = response;
+            const { courseName, courseDescription, courseCredits} = response;
 
             const courseRow = document.createElement("tr");
             courseRow.innerHTML = `
-                        <td>${credits}</td>
-                        <td>${name}</td>
-                        <td>${description}</td>
+                        <td>${courseCredits}</td>
+                        <td>${courseName}</td>
+                        <td>${courseDescription}</td>
                         <td> <button class="btn btn-danger" onclick="handleDelete(${id})">Delete</button></td>`;
 
                     courseContainer.appendChild(courseRow);
@@ -67,19 +68,19 @@ const handleSubmit = async (e) => {
 
 // Adding a course
 async function addCourse(obj) {
-  try {
-    const response = await fetch(`${baseUrl}addCourse`, {
+console.log(obj);
+    const response = await fetch(`${baseUrl}/addCourse`, {
       method: 'POST',
       body: JSON.stringify(obj),
       headers: headers
-    });
+    }).catch (err =>  {
+           console.error(err.message);
+         })
 
     if (response.status === 200) {
-      return response.json();
+      return response;
     }
-  } catch (err) {
-    console.error(err.message);
-  }
+
 }
 
 

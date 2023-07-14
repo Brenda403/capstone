@@ -1,5 +1,6 @@
 package com.devmountain.capstone.services;
 
+import com.devmountain.capstone.dtos.CoursesDto;
 import com.devmountain.capstone.dtos.StudentDtos;
 import com.devmountain.capstone.entities.Student;
 import jakarta.transaction.Transactional;
@@ -11,12 +12,13 @@ public interface StudentService {
     @Transactional
     Student addStudent(StudentDtos studentDtos);
 
-    void assignCoursesToStudent(Long studentId, List<Long> courseIds);
+    @Transactional
+    void assignCoursesToStudent(Long studentId, CoursesDto coursesDto);
 
     // deleting a student record
     @Transactional
     void deleteStudentById(Long studentId);
 
-    @Transactional
-    void editStudentById(StudentDtos studentDtos);
+//    @Transactional
+//    void editStudentById(StudentDtos studentDtos);
 }

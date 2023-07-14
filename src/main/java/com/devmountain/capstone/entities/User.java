@@ -12,25 +12,11 @@ public class User {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
-
-
 // Username & PW
-@Column(name = "username", unique = true)
+@Column(unique = true)
 private String username;
-
-@Column(name = "password")
+@Column(unique = true)
 private String password;
-
-
-
-    public User(UserDtos userDtos) {
-        if (userDtos.getUsername() != null) {
-            this.username = userDtos.getUsername();
-        }
-        if (userDtos.getPassword() != null) {
-            this.password = userDtos.getPassword();
-        }
-    }
 
 // getters and setters
 
@@ -65,6 +51,15 @@ private String password;
         this.id = id;
         this.username = username;
         this.password = password;
+    }
+
+    public User(UserDtos userDtos) {
+        if (userDtos.getUsername() != null) {
+            this.username = userDtos.getUsername();
+        }
+        if (userDtos.getPassword() != null) {
+            this.password = userDtos.getPassword();
+        }
     }
 
 }

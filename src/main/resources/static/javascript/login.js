@@ -24,7 +24,8 @@ const handleSubmit = async (e) => {
 
     if(response.status === 200){
         document.cookie = `userId=${responseArr[1]}`
-        window.location.replace(responseArr[0])
+        window.location.replace(responseArr[0]))
+
     }
 
 }
